@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="accessories_form_view" model="ir.ui.view">
+		<field name="name">student.accessories.form</field>
+        <field name="model">student.accessories</field>
+        <field name="arch" type="xml">
+		<form string="Accessories">
+			<sheet>
+                           
+                            <group>
+                            	<group><field name="name" placeholder="Accessory Name"/></group>
+                                <group><field name="studentClass" options="{'no_create': True}"/></group>
+                            </group>
+                        
+                            <newline />
+
+                            <field name="accessoryLine_ids" nolabel="1" colspan="3">
+                                <tree editable="bottom">
+                                	<field name="accessoryType"/>
+                                    <!-- <field name="quantity" /> -->
+                                    <field name="accessoryPrice"/>
+                                    <field name="gender_selector"/>
+                                    <!-- <field name="totalPrice"/> -->
+                                 </tree>
+                                
+                             </field>
+
+                              <separator string="" colspan="4"/>
+                                <group class="oe_subtotal_footer oe_right" colspan="2">
+                                   <field name="totalPrice"/>
+                                  
+                                </group>
+			</sheet>
+		</form>
+	</field>
+	</record>
+	<record id="accessories_tree_view" model="ir.ui.view">
+		<field name="name">student.accessories.tree</field>
+        <field name="model">student.accessories</field>
+        <field name="arch" type="xml">
+		<tree string="Accessories">
+			<field name="name"/>
+			<field name="studentClass"/>
+		</tree>
+	</field>
+	</record>
+
+
+
+
+
+<record id="accessories_types_form_view" model="ir.ui.view">
+		<field name="name">student.accessories.types.form</field>
+        <field name="model">student.accessories.type</field>
+        <field name="arch" type="xml">
+		<form string="Accessories">
+			<sheet>
+                           
+                            <group>
+                            	<group><field name="name" placeholder="Accessory Type Name"/></group>
+                                <group><field name="studentClass"/></group>
+                            </group>
+                        
+                            <newline />
+
+                            <field name="accessorytype_ids" nolabel="1" colspan="3">
+                                <tree editable="bottom">
+                                	<field name="accessoryType" options="{'no_create': True}"/>
+                                    <field name="quantity" />
+                                    <field name="accessoryPrice"/>
+                                    <field name="totalPrice"/>
+                                    <!-- <field name="gender_selector"/> -->
+
+                                 </tree>
+                                
+                             </field>
+
+
+                              <separator string="" colspan="4"/>
+                                <group class="oe_subtotal_footer oe_right" colspan="2">
+                                   <field name="totalPrice"/>
+                                  
+                                </group>
+			</sheet>
+		</form>
+	</field>
+	</record>
+	<record id="accessories_types_tree_view" model="ir.ui.view">
+		<field name="name">student.accessories.types.tree</field>
+        <field name="model">student.accessories.type</field>
+        <field name="arch" type="xml">
+		<tree string="Accessories Types">
+			<field name="name"/>
+			<field name="studentClass"/>
+		</tree>
+	</field>
+	</record>
+
+
+
+
+
+
+
+
+
+	<record id="action_accessories" model="ir.actions.act_window">
+		  <field name="name">Accessories</field>
+            <field name="res_model">student.accessories</field>
+            <field name="view_mode">tree,form</field>
+	</record>
+
+
+	<record id="action_accessories_types" model="ir.actions.act_window">
+		  <field name="name">Accessories Types</field>
+            <field name="res_model">student.accessories.type</field>
+            <field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem id="accessories_main_menu" name="Accessories Settings"
+		     parent="education_core.menu_education_main_menu"/>
+    <menuitem id="accessories_menu" name="Accessories"
+     parent="accessories_main_menu" action="action_accessories"/>
+     <menuitem id="accessories_types_menu" name="Accessories Types"
+     parent="accessories_main_menu"/>
+
+     <menuitem id="accessories_ttypes_menu" name="Accessories Types"
+     parent="accessories_main_menu" action="action_accessories_types"/>
+</odoo>

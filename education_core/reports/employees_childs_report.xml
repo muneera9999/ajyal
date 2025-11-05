@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="employess_childs_report">
+     <t t-call="web.html_container">
+          <t >
+            
+            <div class="page">
+                   <style >
+                        myRTLpara{
+                          direction:rtl;
+                          font: adobe arabic;
+                         
+                         }
+                          .container{
+                           text-align: center;
+                          }
+                         .block{
+                           display:inline-block;
+                         }
+                        table {
+                              border-collapse: collapse;
+                              width: 100%;
+                          }
+                          td, th { 
+                             text-align: center; 
+                             border: 1px solid #adafa2; 
+                             padding:2px 5px;
+                             white-space: nowrap;
+                          }
+                          td{
+                            font: adobe arabic  16px/20px Georgia, sans-serif;
+                          }
+                            th { 
+                              background-color:#adafa2;
+                              font: adobe arabic bold 16px/20px Georgia, sans-serif;
+                            }
+                          .stud_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              
+                          } 
+                          .division_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              
+                          } 
+                          .caption {
+                              margin: 0; 
+                              background: #302f33;
+                              border: 1px solid #302f33;
+                              color: white;
+                              border-top-left-radius:30px !important;
+                              border-top-right-radius:30px !important;
+                              width: 400px;
+                              height: 30px;
+                              font: adobe arabic bold 16px/20px Georgia, sans-serif;;
+                              margin: 0 auto;
+                              border-bottom: 5px solid #302f33;
+                              padding-top: 5px;
+                            
+                             
+                           }
+                          
+                          thead tr:first-child th:first-child{
+                              border: 1px solid #adafa2;
+                              border-top-right-radius:6px !important;
+                          }
+                          thead tr:first-child th:last-child{
+                              border: 1px solid #adafa2;
+                              border-top-left-radius:6px !important;
+                          }
+                          tbody tr:last-child td:first-child{
+                              border: 2px solid #adafa2; 
+                              border-bottom-right-radius:6px !important;
+                              border-bottom-left-radius:6px !important;
+                          }
+                    
+                       
+                        
+                           .about{
+                              margin: 10px;
+                              padding: 5px;
+                              height: 140px;
+                              border: 1px dashed black;
+                              border-radius:6px;
+                              font: adobe arabic bold 16px/20px Georgia, sans-serif;
+                           }
+                     
+                           .div22{
+                             text-align: center;
+                             display:inline-block;
+                             width: 220px;
+                             height: 65px;
+                             padding-top: 40px;
+                             float: left;
+                             margin-top: 4px;
+                             border: 1px dashed black;
+                             border-radius:70px;
+                           }
+                           .div21{
+                              display:inline-block;
+                              width:405px;
+                              text-align: right;
+                              padding-top: 5px;
+                              dirction: rtl;
+                              float: right;
+
+                           }
+                           .div212{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             height: 26px;
+                             width: 98%;
+                             margin-top: 4px;
+                             dirction: rtl;
+                             font-size: 14px;
+                             padding: 0.5px;
+                             text-align: center;
+                             padding-top: 4px;
+
+                           }
+                           
+                          
+                           .div21111{
+                             <!-- border: 1px solid black;
+                             border-radius:8px !important; -->
+                             display:inline-block;
+                             height: 26px;
+                             <!-- width:250px; -->
+                             width:350px;
+                             padding-right: 4px;
+                             dirction: rtl;
+                             text-align: right;
+                             padding-top: 4px;
+                           }
+                           .div21112{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             display:inline-block;
+                             height: 26px;
+                             width:250px;
+                             padding-right: 3px;
+                             margin-top: 2px;
+                             dirction: rtl;
+                             text-align: right;
+                             padding-top: 4px;
+                             
+                           }
+                           .div2112{
+                            padding-top: 2px;
+                           }
+                           .div21121{
+                            <!--  border: 1px solid black;
+                             border-radius:8px !important; -->
+                             display:inline-block;
+                             height: 26px;
+                             width:140px;
+                             padding-top: 4px;
+                           }
+
+
+                            .divnumber{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             display:inline-block;
+                             height: 26px;
+                             width:140px;
+                             padding-top: 4px;
+                           }
+
+
+
+
+                           .div21122{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             height: 26px;
+                             width:140px;
+                             display:inline-block;
+                             margin-top: 2px;
+                             padding-top: 4px;
+                           }
+                           .all{
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                           }
+                           .all span{
+                             border: 5px solid #302f33;background:#302f33;color: white;border-radius:15px !important;
+                              min-width: 20em;
+                           }
+                           .row{
+                              width: 80%;
+                              margin: 0 auto;
+                           }
+                     
+                            .subject{
+                               width:100%;
+                               heihgt:100px;
+                            }
+                            .subject span{
+                            margin-right: 15px;
+                            }
+                      </style>
+
+               <div class="oe_structure" style="width: 21cm;"/>
+                   <div class="container">
+                    <div class="row">
+                      
+                       <div class="block">
+                            
+                            <div class="text-center">
+                                 <h1 > مؤسسة مكه التعليميه</h1>
+                            </div>
+                           
+                             <div class="text-center" style="background-color:#adafa2;">
+                              <h2 >تقرير أبناء العاملين</h2>
+                            </div>
+                          <br/>
+                      </div>
+
+                     </div>
+
+                   <!-- cntainer close -->
+                </div>
+
+                  <myRTLpara>
+
+             
+                 <table class="table table-sm o_main_table" name="num_table">
+                    <thead>
+                      <tr>
+                        <t t-set="colspan" t-value="12"/>
+                          <th name="tot_ount" class="text-left">
+                           <font size="5"><strong> <span>إسم الموظف</span></strong></font>
+                          </th>
+                          <th name="tot_ount" class="text-left">
+                           <font size="5"><strong> <span>عدد الطلاب</span></strong></font>
+                          </th>
+                          <th name="tot_ount" class="text-left">
+                           <font size="5"><strong> <span>المبلغ المستحق</span></strong></font>
+                          </th>
+                          <th name="tot_ount" class="text-left">
+                           <font size="5"><strong> <span>المبلغ المدفوع</span></strong></font>
+                          </th>
+
+                             <th name="tot_ount" class="text-left">
+                           <font size="5"><strong> <span>المتبقي</span></strong></font>
+                          </th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="invoice_tbody">
+                      <tr t-foreach="docs" t-as="o" t-if="o.employee_id">
+                        <t name="stu_ad_no">
+                           <td>
+                            <font size="4">  <span t-field="o.name" /></font>
+                          </td>
+                          <td>
+                            <font size="4">  <span t-field="o.students_num" /></font>
+                          </td>
+                          <td>
+                            <font size="4">  <span t-field="o.total_fees" /></font>
+                          </td>
+                          <td>
+                            <font size="4">  <span t-field="o.paid_fees" /></font>
+
+                          </td>
+                          <td>
+                            <font size="4">  <span t-field="o.due_fees" /></font>
+
+                          </td>
+
+                        </t>
+                      </tr>
+                    </tbody>
+                  </table>
+                    
+            </myRTLpara>
+        </div>
+      </t>
+    </t>
+  </template>
+
+       <report
+          id="action_employess_childs_report"
+          model="op.parent"
+          string="Employees Childs"
+          report_type="qweb-pdf"
+          name="education_core.employess_childs_report"
+          file="education_core.employess_childs_report"
+      />
+
+</odoo>

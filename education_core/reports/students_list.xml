@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- <template id="custom_header_report" inherit_id="report.eternal_layout_header">
+        <xpath expr="@class=['header']" position="replace">
+            <div class="container">
+                <div class="row">
+                    <div  class="block" style="float: right;">
+                        <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                    </div>
+                    <div class="block"> -->
+                        <!-- <span>بسم اللَه الرحمن الرحيم</span><br/> -->
+                        <!--  <br/>
+                        
+                         <div>
+                            <h1>مؤسسة مكه التعليميه</h1>
+                          </div><br/>
+                                 
+                      </div>
+                      <div class="block" style="float:left;">
+                          <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                      </div>
+                          
+                </div>
+              </div>
+        </xpath>
+      </template> -->
+
+    <template id="report_student_list">
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <div class="page">
+
+            <style >
+                        myRTLpara{
+                          direction:rtl;
+                          font: adobe arabic;
+                         
+                         }
+                          .container{
+                           text-align: center;
+                          }
+                         .block{
+                           display:inline-block;
+                         }
+                        table {
+                              border-collapse: collapse;
+                              width: 30%;
+                              text-align: center;
+                              margin: 0 auto;
+                          }
+                          td, th { 
+                             text-align: center; 
+                             border: 1px solid #adafa2; 
+                             padding:2px 5px;
+                             white-space: nowrap;
+                          }
+                          td{
+                            font: normal  16px/20px Georgia, sans-serif;
+                          }
+                            th { 
+                              background-color:#adafa2;
+                              font: normal bold 16px/20px Georgia, sans-serif;
+                            }
+                          .stud_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              
+                          } 
+                          .division_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              margin: 0 auto;
+                              
+                          } 
+                    
+                          
+                          thead tr:first-child th:first-child{
+                              border: 1px solid #adafa2;
+                              border-top-right-radius:6px !important;
+                          }
+                          thead tr:first-child th:last-child{
+                              border: 1px solid #adafa2;
+                              border-top-left-radius:6px !important;
+                          }
+                          tbody tr:last-child td:first-child{
+                              border: 2px solid #adafa2; 
+                              border-bottom-right-radius:6px !important;
+                              border-bottom-left-radius:6px !important;
+                          }
+                          #institute{
+                            background: #302f33;
+                            border-radius:20px !important;
+                            color: white;
+                            min-width: 450px;
+                            min-height: 30px;
+                          }
+                          #school{
+                            background: #adafa2;
+                            border-radius:20px !important;
+                            margin-top:0px;
+                            min-width: 400px;
+                            min-height: 30px;
+                          }
+                         
+                          .details{
+                            background: #302f33;
+                            margin-top: 0px;
+                            padding-bottom:3px;
+
+                            
+                          }
+                          .details div{
+                            background: white;
+                            display:inline-block;
+                            border-radius:8px !important;
+                          }
+                          .details div{
+                           font: normal bold 16px/20px Georgia, sans-serif;
+                          }
+                          .details.content { 
+                              white-space: nowrap;
+                           }
+                           .about{
+                              margin: 10px;
+                              padding: 5px;
+                              height: 130px;
+                              border: 1px dashed black;
+                              border-radius:6px;
+                              font: normal bold 16px/20px Georgia, sans-serif;
+                           }
+          </style>
+          <div class="oe_structure"/>
+          <div class="container">
+            <div class="row">
+                <div  class="block" style="float: right;">
+                  <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                </div>
+                             <!-- <div class="block" style="float: center;"> -->
+                <div class="block">
+                                  <!-- <span>بسم اللَه الرحمن الرحيم</span><br/> -->
+                  <!-- <br/> -->
+                        
+                  <div>
+                    <h1>مؤسسة مكه التعليميه</h1>
+                  </div><br/>
+                                 
+                </div>
+                <div class="block" style="float:left;">
+                  <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                </div>
+                          
+                        <!-- </div> -->
+            </div>
+                 
+                  <t t-set="student_class" t-value="0"/>
+                  <t t-foreach="docs" t-as="rec">
+                     <t t-set="student_class" t-value="rec.name"/>
+                  </t>
+                  <div class="row" style="width: 48%;margin:auto;">
+                                <center>
+                                   <div >
+                                     <h4 >بيانات الطلاب</h4>
+                                 </div>
+                                    <div class="col-xs-12" style="margin:auto;
+                                      border-top-left-radius:6px !important;border-top-right-radius:6px !important;">
+                                        <strong>  <span t-esc="student_class"/></strong>
+                                        
+                                    </div>
+
+                                </center>
+                            </div> <br/>
+            <myRTLpara>
+
+                   <t t-set="number" t-value="1"/>
+                   <table class="division_table" style="overflow:hidden;">
+                          <thead>
+                              <tr>
+                             
+                             
+                              
+                                
+                                <th class="text-center top">Number</th>
+
+                                <th class="text-center top">Name</th>
+                                  <!-- <th class="text-center top"> Admission NO </th> -->
+<!--                                 <th class="text-center top">Status</th>
+ -->                              </tr>
+                          </thead>
+                          <tbody>
+                              <!-- <tr t-foreach="student_ids" t-as="doc_id"> -->
+                              <tr t-foreach="docs.student_ids" t-as="doc_id">
+
+                                 <td >
+                                   <span t-esc="number"/>
+                                 </td>
+                                
+                                 <td style="text-align: right;">
+                                   <span style="font-size:14px;text-align: right;" t-esc="doc_id.name"/>
+                                 </td>
+                                <!--   <td >
+                                   <span t-esc="doc_id.ad_no"/>
+                                 </td> -->
+                                 <!--  <td style="text-align: right;">
+                                   <span style="font-size:14px;text-align: right;" t-esc="dict(doc_id.fields_get(allfields=['state'])['state']['selection'])[doc_id.state]"/>
+                                 </td> -->
+                                 <t t-set="number" t-value="number+1"/>
+                             
+                                </tr>
+                          
+                          </tbody>
+                      </table>
+
+            </myRTLpara>
+                         <div class="oe_structure"/>
+
+            </div>
+        </div>
+      </t>
+      </t>
+    </template>
+     <template id="report_student_list_with_phone">
+
+    <t t-call="web.html_container">
+      <t t-call="web.basic_layout">
+
+       
+                <div class="page">
+
+                     <style >
+                        myRTLpara{
+                          direction:rtl;
+                          font: adobe arabic;
+                         
+                         }
+                          .container{
+                           text-align: center;
+                          }
+                         .block{
+                           display:inline-block;
+                         }
+                        table {
+                              border-collapse: collapse;
+                              width: 30%;
+                              text-align: center;
+                              margin: 0 auto;
+                          }
+                          td, th { 
+                             text-align: center; 
+                             border: 1px solid #adafa2; 
+                             padding:2px 5px;
+                             white-space: nowrap;
+                          }
+                          td{
+                            font: normal  16px/20px Georgia, sans-serif;
+                          }
+                            th { 
+                              background-color:#adafa2;
+                              font: normal bold 16px/20px Georgia, sans-serif;
+                            }
+                          .stud_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              
+                          } 
+                          .division_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              margin: 0 auto;
+                              
+                          } 
+                    
+                          
+                          thead tr:first-child th:first-child{
+                              border: 1px solid #adafa2;
+                              border-top-right-radius:6px !important;
+                          }
+                          thead tr:first-child th:last-child{
+                              border: 1px solid #adafa2;
+                              border-top-left-radius:6px !important;
+                          }
+                          tbody tr:last-child td:first-child{
+                              border: 2px solid #adafa2; 
+                              border-bottom-right-radius:6px !important;
+                              border-bottom-left-radius:6px !important;
+                          }
+                          #institute{
+                            background: #302f33;
+                            border-radius:20px !important;
+                            color: white;
+                            min-width: 450px;
+                            min-height: 30px;
+                          }
+                          #school{
+                            background: #adafa2;
+                            border-radius:20px !important;
+                            margin-top:0px;
+                            min-width: 400px;
+                            min-height: 30px;
+                          }
+                         
+                          .details{
+                            background: #302f33;
+                            margin-top: 0px;
+                            padding-bottom:3px;
+
+                            
+                          }
+                          .details div{
+                            background: white;
+                            display:inline-block;
+                            border-radius:8px !important;
+                          }
+                          .details div{
+                           font: normal bold 16px/20px Georgia, sans-serif;
+                          }
+                          .details.content { 
+                              white-space: nowrap;
+                           }
+                           .about{
+                              margin: 10px;
+                              padding: 5px;
+                              height: 130px;
+                              border: 1px dashed black;
+                              border-radius:6px;
+                              font: normal bold 16px/20px Georgia, sans-serif;
+                           }
+                             
+                      
+
+
+          
+
+
+                      </style>
+
+                       <div class="oe_structure"/>
+
+
+                    <div class="container">
+
+                          <div class="row">
+                              <div  class="block" style="float: right;">
+                                 <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                             </div>
+                             <div class="block">
+                                  <!-- <span>بسم اللَه الرحمن الرحيم</span><br/> -->
+                                  <br/>
+                        
+                                  <div>
+                                    <h1>مؤسسة مكه التعليميه</h1>
+                                  </div><br/>
+                                 
+                              </div>
+                             <div class="block" style="float:left;">
+                                 <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                          </div>
+                          
+                        </div>
+                  </div>
+                 
+                  <t t-set="student_class" t-value="0"/>
+                  <t t-foreach="docs" t-as="rec">
+                     <t t-set="student_class" t-value="rec.name"/>
+                  </t>
+                  <div class="row" style="width: 48%;margin:auto;">
+                                <center>
+                                   <div >
+                                     <h4 >بيانات الطلاب</h4>
+                                 </div>
+                                    <div class="col-xs-12" style="margin:auto;
+                                      border-top-left-radius:6px !important;border-top-right-radius:6px !important;">
+                                        <strong> <span t-esc="student_class"/></strong>
+                                        
+                                    </div>
+
+                                </center>
+                            </div> <br/>
+                                      <myRTLpara>
+
+                   <t t-set="number" t-value="1"/>
+                   <table class="division_table" style="overflow:hidden;">
+                          <thead>
+                              <tr>
+                             
+                             
+                              
+                                
+                                <th class="text-center top">Number</th>
+                                <th class="text-center top">Name</th>
+                                <th class="text-center top">Phone</th>
+                                <th  class="text-center top">Mobile</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr t-foreach="docs.student_ids" t-as="doc_id">
+
+                                 <td >
+                                   <span t-esc="number"/>
+                                 </td>
+                                 <td style="text-align: right;">
+                                   <span style="font-size:14px;text-align: right;" t-esc="doc_id.name"/>
+                                 </td>
+                                  <td style="text-align: right;">
+                                   <span style="font-size:14px;text-align: right;" t-esc="doc_id.phone"/>
+                                 </td>
+                                  <td  style="text-align: right;">
+                                   <span style="font-size:14px;text-align: right;" t-esc="doc_id.mobile"/>
+                                 </td>
+                                 <t t-set="number" t-value="number+1"/>
+                             
+                                </tr>
+                          
+                          </tbody>
+                      </table>
+
+                    </myRTLpara>
+                  <div class="oe_structure"/>
+
+           </div>
+
+
+      </t>
+    </t>
+
+    </template>
+
+
+  
+  </data>
+</odoo>

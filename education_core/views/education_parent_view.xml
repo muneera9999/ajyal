@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <record id="view_op_parent_tree" model="ir.ui.view">
+            <field name="name">op.parent.tree</field>
+            <field name="model">op.parent</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Parent">
+                    <field name="name" />
+                    <field name="phone" />
+                    <field name="email" invisible="1" />
+                    <!-- <field name="career"/> -->
+           
+                    <field name="student_ids" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_op_parent_form" model="ir.ui.view">
+            <field name="name">op.parent.form</field>
+            <field name="model">op.parent</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Parent">
+                    <header>
+                        <button type="object" name="create_parent_user"
+                            string="Create Parent User"
+                            class="oe_highlight"
+                            invisible="user_id != False" />
+                            <button type="object" name="action_is_parent"
+                            string="is"
+                            class="oe_highlight" invisible="1"/>
+                    </header>
+                    <sheet>
+                       
+                        <group>
+                        <group col="2">
+                            <field name="name" placeholder="Parent Name" />
+                            <field name="phone"/>
+                              <field name="mobile"/>
+                            <field name="career"/>
+                            
+
+                          <!--   <field name="is_employee"/>
+                            <field name="employee_id"  attrs="{'required':[('is_employee','=',True)],'invisible':[('is_employee','=',False)]}" /> -->
+                            <!-- <field name="relationship"/> -->
+                        </group>
+                        <group col="2">
+                            <field name="user_id" readonly="1" />
+                            <field name="email"/>
+                            <field name="address"/>
+                            <field name="childs_no" invisible="1"/>
+
+                        </group>
+                        <!-- <group string="Fees Details" col="2"> -->
+                     <!--        <field name="total_fees" readonly="1" />
+                            <field name="paid_fees" readonly="1"/>
+                            <field name="due_fees" readonly="1" /> -->
+                        <!-- </group> -->
+                    </group>
+                        <separator colspan="4" string="Student(s)" />
+                        <field name="student_ids">
+                            <tree>
+                                <field name="ad_no"/>
+                                <field name="name"/>
+                                <!-- <field name="phone"/> -->
+                                <field name="email" invisible="1"/>
+                              <!--   <field name="total_fees"/>
+                                <field name="paid_fees"/>
+                                <field name="due_fees"/> -->
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_op_parent_search" model="ir.ui.view">
+            <field name="name">op.parent.search</field>
+            <field name="model">op.parent</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Parent">
+                    <field name="name" />
+                    <field name="student_ids" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="Name" name="name" domain="[]"
+                            context="{'group_by':'name'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="act_open_op_parent_view">
+            <field name="name">Parents</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.parent</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_op_parent_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_parent_view_form">
+            <field name="act_window_id" ref="act_open_op_parent_view" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_op_parent_form" />
+        </record>
+        <record model="ir.actions.act_window.view" id="act_open_op_parent_view_tree">
+            <field name="act_window_id" ref="act_open_op_parent_view" />
+            
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_op_parent_tree" />
+        </record>
+        <menuitem id="menu_education_parent" name="Parents" sequence="11"
+              parent="education_core.menu_education_admission" action="act_open_op_parent_view"/>
+
+
+
+              
+    </data>
+</odoo>

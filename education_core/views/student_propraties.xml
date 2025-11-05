@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model='ir.ui.view' id='education_student_propreties_form_view'>
+        <field name="name">education.student.properties.form</field>
+        <field name="model">student.properties</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    
+                    <group>
+                        <group>
+                            <field name="student_id"  options="{'no_create':1,'no_open': True}"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="teacher"  options="{'no_create':1,'no_open': True}"/>
+                            
+                        </group>
+                    </group>
+                    <label for="descripption">behavior</label>
+                    <field name="descripption"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+     <record model="ir.ui.view" id="education_student_propreties_tree">
+            <field name="name">education.student.properties.tree</field>
+            <field name="model">student.properties</field>
+            <field name="arch" type="xml">
+                <tree string="Student Behavior">
+                    <field name="student_id"/>
+                    <field name="descripption"/>
+                    <field name="teacher"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="education_student_properties_search" model="ir.ui.view">
+        <field name="name">Student behavior</field>
+        <field name="model">student.properties</field>
+        <field name="arch" type="xml">
+            <search string="Search Student Behaviors">
+                <field name="descripption"/>
+                <field name="student_id"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='behavior' name="descripption" domain="[]" context="{'group_by' : 'descripption'}"/>
+                    <filter string='Student Name' name="student_id" domain="[]" context="{'group_by' : 'student_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+
+      <record model="ir.actions.act_window" id="action_education_student_properties">
+            <field name="name">Student Properties</field>
+            <field name="res_model">student.properties</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="education_student_propreties_tree"/>
+            <!-- <field name="domain">[('student_id', '=', active_id)]</field>
+            <field name="context">{'default_student_id':active_id}</field> -->
+            <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to log the student Behavior.
+        </p>
+    </field>
+    </record>
+    <record model="ir.ui.view" id="student_properties_smart_button_form">
+            <field name="name">student.properties.smart.button.form</field>
+            <field name="model">education.student</field>
+            <field name="inherit_id" ref="education_core.view_education_student_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button type="action" name="%(education_core.action_education_student_properties)d"  class="oe_stat_button" icon="fa-list-alt" string="Student Behavior"
+                    context="{'search_default_student_id': active_id}"/>
+                </xpath>
+            </field>
+    </record>
+     <record model="ir.actions.act_window.view" id="education_student_properties">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="education_student_propreties_tree"/>
+        <field name="act_window_id" ref="action_education_student_properties"/>
+
+    </record>
+
+    <menuitem id="menu_student_properties_main" name="Behaviors Logs"
+            parent="education_core.menu_education_root" sequence="6"
+            />
+        <menuitem id="menu_student_properties_sub" name="Behaviors"
+            parent="menu_student_properties_main" 
+            action="action_education_student_properties"/>
+</odoo>

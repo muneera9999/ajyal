@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+         <record id="education_teacher_view_hr_job" model="ir.ui.view">
+            <field name="name">res.inherit.hr.job</field>
+            <field name="model">hr.job</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="hr.view_hr_job_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='recruitment']" position="inside">
+                          
+                                <field name="is_teacher"/>
+                           
+                </xpath>
+            </field>
+        </record>
+
+
+      <record id="hr_employee_teacher_inherit_form" model="ir.ui.view">
+            <field name="name">hr.employee.teacher.inherit.view</field>
+            <field name="model">hr.employee</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group[2]/field[@name='job_id']" position="after">
+                           
+                                <field name="is_teacher" invisible="1"/>
+                          
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+
+
+
+
+
+
+    <record model="ir.ui.view" id="view_education_faculty_kanban">
+        <field name="name">education.faculty.kanban</field>
+        <field name="model">education.faculty</field>
+        <field name="arch" type="xml">
+            <kanban class="education_faculty_kanban">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="mobile"/>
+                <field name="image"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+                          <!--   <div class="o_kanban_image">
+                                <t t-if="record.image.raw_value">
+                                    <img t-att-src="kanban_image('education.faculty', 'image', record.id.raw_value)"/>
+                                </t>
+                                <t t-if="!record.image.raw_value">
+                                    <img t-att-src='_s + "/base/static/src/img/avatar.png"'/>
+                                </t>
+                            </div> -->
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title oe_partner_heading"><field name="name"/> <field name="second_name"/> <field name="middle_name"/> <field name="last_name"/></strong>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <ul>
+                                    <li t-if="record.phone.raw_value">
+                                        <i class="fa fa-phone"/>
+                                        <field name="phone"/>
+                                    </li>
+                                    <li t-if="record.email.raw_value">
+                                        <i class="fa fa-envelope"/>
+                                        <a t-attf-href="mailto:#{record.email.value}">
+                                            <field name="email"/>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="view_education_faculty_tree" model="ir.ui.view">
+        <field name="name">education.faculty.tree</field>
+        <field name="model">education.faculty</field>
+        <field name="arch" type="xml">
+            <tree string="Faculty">
+                <field name="name"/>
+                <field name="last_name" invisible="1"/>
+                <field name="gender"/>
+                <field name="date_of_birth"/>
+                <field name="date_of_hire"/>
+
+                <field name="blood_group"/>
+                <field name="email"/>
+                <field name="phone"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_faculty_form" model="ir.ui.view">
+        <field name="name">education.faculty.form</field>
+        <field name="model">education.faculty</field>
+        <field name="arch" type="xml">
+            <form string="Faculty">
+                <header>
+                     <button name="create_employee" type="object" class="oe_highlight"
+                            string="Create Employee" 
+                            help="Click to create employee for this faculty"
+                            invisible="employee_id != False or contract_type == 'contract'"
+                            />
+
+
+                     <button name="create_partner" type="object" class="oe_highlight"
+                            string="Create Partner"
+                            help="Click to create Partner for this faculty"
+                            invisible="employee_id != False or contract_type == 'employee'"
+                            />
+                </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_left oe_avatar" />
+
+                     <div class="oe_title">
+                        <h3>
+                            <field name="name" />
+                        </h3>
+
+                    
+                    </div>
+
+
+
+
+                    <!-- <div class="oe_title" style="width:1000px;">
+                        <h3>
+                            <table>
+                                 <tr>
+                                    <td style="padding-right:10px;width:100px;"><field name="name" required="1" placeholder="First Name" /></td>
+                                    <td style="padding-right:10px;width:100px;"><field name="second_name" required="1" placeholder="Scond Name"/></td>
+                                    <td style="padding-right:10px;width:100px;"><field name="middle_name" required="1" placeholder="Middle Name" /></td>
+                                    <td style="padding-right:10px;width:100px;"><field name="last_name" required="1" placeholder="Last Name"/></td>
+                                </tr>
+                            </table>
+                        </h3>
+                    </div> -->
+                    <notebook>
+                        <page string="Faculty Details">
+                            <group>
+                                <group>
+                                    <field name="gender"/>
+                                    <field name="Social_status"/>
+
+                                </group>
+                                <group>
+                                    <field name="phone"/>
+                                    <field name="date_of_birth"/>
+                                    <field name="blood_group"/>
+                                </group>
+                                   <group>
+                                  
+                                    <field name="contract_type" widget="radio" options="{'horizontal': true}"/>
+                                      <field name="degree"/>
+                                    <field name="date_of_hire"/>
+                                    <field name="qualification" invisible="1"/>
+                                </group>
+                                <group>
+                                    
+                                    <field name="subject_lines" widget="many2many_tags"/>
+                                    <field name="classes" widget="many2many_tags"/>
+
+                                    <field name="preperation"/>
+                                    <field name="lectures_number"/>
+                                          <field name="employee_id" readonly="1" invisible="1"/>
+                                    <field name="partner_id" readonly="1" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                      <!--   <page string="Contact Details">
+                            <group>
+                                <group>
+                                    <field name="email"/>
+                                    <field name="employee_id" readonly="1" invisible="1"/>
+                                    <field name="partner_id" readonly="1" invisible="1"/>
+
+                                </group>
+                                <group>
+                                    <field name="phone"/>
+                                    <field name="mobile"/>
+                                </group>
+                            </group>
+                        </page> -->
+                      <!--   <page string="Subjects">
+                            <group>
+                            <field name="subject_lines" widget="many2many_tags"/>
+                        </group>
+                              
+                        </page> -->
+                         <page string="Secret Files">
+                            <group>
+                            <field name="fuculty_attachment_id" widget="many2many_binary" class="oe_inline"/>
+
+
+                        </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="faculty_search" model="ir.ui.view">
+        <field name="name">Faculty</field>
+        <field name="model">education.faculty</field>
+        <field name="arch" type="xml">
+            <search string="Search Faculties">
+                <field name="name"/>
+                <field name="degree"/>
+                <field name="gender"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='Degree' name="degree" domain="[]" context="{'group_by' : 'degree'}"/>
+                    <filter string='Gender' name="gender" domain="[]" context="{'group_by' : 'gender'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_faculty" model="ir.actions.act_window">
+        <field name="name">Faculty</field>
+        <field name="res_model">education.faculty</field>
+        <field name="type">ir.actions.act_window</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="faculty_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first faculty here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_education_faculty" name="Faculties" sequence="15"
+              parent="menu_education_admission" action="action_faculty"/>
+
+</odoo>

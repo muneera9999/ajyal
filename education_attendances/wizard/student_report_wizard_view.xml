@@ -1,0 +1,33 @@
+<odoo>
+    <record id="student_report_wizard_view_form" model="ir.ui.view">
+        <field name="name">student.report.wizard.view.form</field>
+        <field name="model">student.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Student Attendance Report">
+                <sheet>
+                    <group>
+                        <field name="academic_year_id" />
+                        <field name="class_ids" />
+                    </group>
+
+                    <footer>
+                        <button string="Print Excel" type="object" name="action_print_xlsx"
+                            class="btn-primary" />
+                        <button string="Cancel" special="cancel" class="btn-secondary" />
+                    </footer>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
+
+<!--  
+<odoo>
+    <record id="academic_term_wizard_action" model="ir.actions.act_window">
+        <field name="name">Academic Term</field>
+        <field name="res_model">academic.term.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record> -->

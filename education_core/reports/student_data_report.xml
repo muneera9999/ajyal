@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_student_data_data">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                        <div class="page">
+                            <myRTLpara> 
+                                    <style >
+
+
+
+                                            myRTLpara{
+                                                direction:rtl;
+                                                font: adobe arabic;
+                                                
+                                                }
+                                                .container{
+                                                text-align: center;
+                                                }
+                                                .block{
+                                                display:inline-block;
+                                                }
+                                                table {
+                                                    border-collapse: collapse;
+                                                    width: 100%;
+                                                }
+                                                td, th { 
+                                                    text-align: center; 
+                                                    border: 1px solid #adafa2; 
+                                                    padding:2px 5px;
+                                                    white-space: nowrap;
+                                                }
+                                                td{
+                                                    font: normal  16px/20px Georgia, sans-serif;
+                                                }
+                                                    th { 
+                                                    font: normal bold 16px/20px Georgia, sans-serif;
+                                                    }
+                                                .stud_table{
+                                                    border-spacing: 1px;
+                                                    border-collapse:separate;
+                                                    padding: 10px;
+                                                    
+                                                } 
+                                                .division_table{
+                                                    border-spacing: 1px;
+                                                    border-collapse:separate;
+                                                    padding: 10px;
+                                                    
+                                                } 
+                                                .caption {
+                                                    margin: 0; 
+                                                    text-align:center;
+                                                    border: 1px solid #302f33;
+                                                    
+                                                    border-top-left-radius:30px !important;
+                                                    border-top-right-radius:30px !important;
+                                                    min-width: 1000px;
+                                                    min-height: 30px;
+                                                    font: normal bold 16px/20px Georgia, sans-serif;;
+                                                    margin: 0 auto;
+                                                    border-bottom: 5px solid #302f33;
+                                                    padding-top: 5px;
+                                                    
+                                                    
+                                                }
+                                                
+                                                thead tr:first-child th:first-child{
+                                                    border: 1px solid #adafa2;
+                                                    border-top-right-radius:6px !important;
+                                                }
+                                                thead tr:first-child th:last-child{
+                                                    border: 1px solid #adafa2;
+                                                    border-top-left-radius:6px !important;
+                                                }
+                                                tbody tr:last-child td:first-child{
+                                                    border: 2px solid #adafa2; 
+                                                    border-bottom-right-radius:6px !important;
+                                                    border-bottom-left-radius:6px !important;
+                                                }
+                                                #institute{
+                                                    background: #302f33;
+                                                    border-radius:20px !important;
+                                                    color: white;
+                                                    min-width: 450px;
+                                                    min-height: 30px;
+                                                }
+                                                    #school{
+
+                                                    border-radius:20px !important;
+                                                    margin-top:0px;
+                                                    min-width: 400px;
+                                                    min-height: 30px;
+                                                }
+                                                .result{
+                                                    border: 3px solid #302f33;
+                                                    border-top-left-radius:6px !important;
+                                                    border-top-right-radius:6px !important;
+                                                    margin: 0 auto;
+                                                    border-bottom-width: 12px;
+                                                    border-left-width: thick;
+                                                    border-right-width: thick;
+                                                    width: 80%;
+                                                }
+                                                .details{
+                                                    margin-top: 0px;
+                                                    padding-bottom:3px;
+
+                                                    
+                                                }
+                                                .details div{
+                                                    background: white;
+                                                    display:inline-block;
+                                                    border-radius:8px !important;
+                                                }
+                                                .details div{
+                                                font: normal bold 16px/20px Georgia, sans-serif;
+                                                }
+                                                .details.content { 
+                                                    white-space: nowrap;
+                                                }
+                                                .about{
+                                                    margin: 10px;
+                                                    padding: 5px;
+                                                    height: 130px;
+                                                    border: 1px dashed black;
+                                                    border-radius:6px;
+                                                    font: normal bold 16px/20px Georgia, sans-serif;
+                                                }
+                                                    .nots{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    height: 25px;
+                                                    text-align: right;
+                                                    padding-right: 10px;
+                                                    padding-top: 2px;
+                                                }
+                                                .div22{
+                                                    text-align: center;
+                                                    display:inline-block;
+                                                    width: 220px;
+                                                    height: 50px;
+                                                    padding-top: 40px;
+                                                    float: left;
+                                                    margin-top: 4px;
+                                                    border: 1px dashed black;
+                                                    border-radius:70px;
+                                                }
+                                                .div21{
+                                                    display:inline-block;
+                                                    width:405px;
+                                                    text-align: right;
+                                                    padding-top: 5px;
+                                                    dirction: rtl;
+                                                    float: right;
+
+                                                }
+                                                .div212{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    height: 26px;
+                                                    width: 98%;
+                                                    margin-top: 4px;
+                                                    dirction: rtl;
+                                                    font-size: 14px;
+                                                    padding: 0.5px;
+                                                    text-align: center;
+                                                    padding-top: 4px;
+
+                                                }
+                                                
+                                                
+                                                .div21111{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    display:inline-block;
+                                                    height: 26px;
+                                                    width:250px;
+                                                    padding-right: 4px;
+                                                    dirction: rtl;
+                                                    text-align: right;
+                                                    padding-top: 4px;
+                                                }
+                                                .div21112{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    display:inline-block;
+                                                    height: 26px;
+                                                    width:250px;
+                                                    padding-right: 3px;
+                                                    margin-top: 2px;
+                                                    dirction: rtl;
+                                                    text-align: right;
+                                                    padding-top: 4px;
+                                                    
+                                                }
+                                                .div2112{
+                                                    padding-top: 2px;
+                                                }
+                                                .div21121{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    display:inline-block;
+                                                    height: 26px;
+                                                    width:140px;
+                                                    padding-top: 4px;
+                                                }
+                                                .div21122{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    height: 26px;
+                                                    width:140px;
+                                                    display:inline-block;
+                                                    margin-top: 2px;
+                                                    padding-top: 4px;
+                                                }
+                                                .all{
+                                                    padding-top: 8px;
+                                                    padding-bottom: 8px;
+                                                }
+                                                .all span{
+                                                    border: 5px solid #302f33;background:#302f33;color: white;border-radius:15px !important;
+                                                    min-width: 20em;
+                                                }
+                                                .row{
+                                                    width: 80%;
+                                                    margin: 0 auto;
+                                                }
+                                                /* Vertical */
+                                                .graph{
+                                                    border: 1px solid black;
+                                                    border-radius:8px !important;
+                                                    margin: 10px;
+                                                    padding: 10px;
+                                                    text-align: right;
+                                                    min-height: 330px;
+                                                }
+                                                .vertical .progress-bar {
+                                                    float: right;
+                                                    height: 250px;
+                                                    width: 40px;
+                                                    margin-right: 25px;
+                                                    }
+
+                                                    .vertical .progress-track {
+                                                    position: relative;
+                                                    width: 40px;
+                                                    height: 100%;
+                                                    background: #ebebeb;
+                                                    }
+
+                                                    .vertical .progress-fill {
+                                                    position: relative;
+                                                    background: #825;
+                                                    height: 50%;
+                                                    width: 40px;
+                                                    color: #fff;
+                                                    text-align: center;
+                                                    font-family: "Lato","Verdana",sans-serif;
+                                                    font-size: 12px;
+                                                    line-height: 20px;
+                                                    }
+
+                                                    .rounded .progress-track,
+                                                    .rounded .progress-fill {
+                                                    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+                                                    border-radius: 3px;
+                                                    }
+                                                    .subject{
+                                                    width:100%;
+                                                    heihgt:100px;
+                                                    }
+                                                    .subject span{
+                                                    margin-right: 15px;
+                                                    
+                                                }
+                                        </style>
+                                <div class="container">
+
+                                    <!-- <div class="row" style="width:100%;">
+                                        <div  class="block" style="float: right;">
+                                            <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                                        </div> -->
+                                        <div class="row" style="width:100%;">
+                                            <div  class="block" style="float: right;">
+                                                <!-- <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" /> -->
+                                            </div>
+
+
+                                        <div class="block" style="float: center;">
+                                            <span style="font-size: 18px;">بسم اللَه الرحمن الرحيم</span>
+                                            <br/>
+
+                                            <span style="font-size: 18px;">وزارة التربية و التعليم - إدارة التعليم الخاص</span>
+                                            <br/>
+                                            <div>
+                                                <h1 style="font-family:Calibri !important;">مؤسسة مكه التعليميه</h1>
+                                            </div>
+                                               
+                                        </div>
+
+
+                                        <div class="block" style="float:left;">
+                                            <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                                 <div >
+                                     <h2 style="text-align:right" >بيانات الطلاب</h2>
+                                 </div>
+                                <table class="table table-sm o_main_table">
+                                    <t>
+                                        <tbody class="invoice_tbody">
+                                            <tr>
+                                                <td style="text-align:right">
+                                                    <font size="5"><strong> <span> رقم التسجيل</span></strong></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.ad_no" /></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="5"><strong> <span> اسم الطالب</span></strong></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.name" /></font>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <th  style="text-align:right">
+                                                    <font size="5"><strong> <span> المدرسة</span></strong></font>
+                                                </th>
+                                                 <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.school_id" /></font>
+                                                </td>
+                                            	<th style="text-align:right">
+                                                    <font size="5"><strong> <span> الصف</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.admission_class.name" /></font>
+                                                </td>
+
+                                            </tr>
+                                            <tr>   
+                                                <th style="text-align:right">
+                                                    <font size="5"><strong> <span> الفصل</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.class_id" /></font>
+                                                </td>
+                                                <th  style="text-align:right">
+                                                    <font size="5"><strong> <span> النوع</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.gender" /></font>
+                                                </td>
+                                            </tr>
+                                            <tr>   
+                                                <th  style="text-align:right">
+                                                    <font size="5"><strong> <span> الميلاد</span></strong></font>
+                                                </th>
+                                                  
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.date_of_birth" /></font>
+                                                </td>
+                                                <th style="text-align:right">
+                                                    <font size="5"><strong> <span> الأم</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.mother_name" /></font>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align:right">
+                                                    <font size="5"><strong> <span> ولي الأمر</span></strong></font>
+                                                </th>
+                                                 <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.parent_ids" /></font>
+                                                </td>
+                                                <th  style="text-align:right">
+                                                    <font size="5"><strong> <span> رقم الهاتف</span></strong></font>
+                                                </th>
+                                                 <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.mobile" /></font>
+                                                </td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <th  style="text-align:right">
+                                                    <font size="5"><strong> <span> الجنسية</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right"> 
+                                                    <font size="4">  <span t-field="o.nationality" /></font>
+                                                </td>
+                                                <th style="text-align:right">
+                                                    <font size="5"><strong> <span> العنوان</span></strong></font>
+                                                </th>
+                                                 <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.zone_id" /></font>
+                                                </td>
+                                            </tr>
+                                         </tbody>
+                                    </t>
+                                </table>
+                                            
+                                             <div >
+                                                <h2 style="text-align:right" >بيانات الترحيل</h2>
+                                            </div>
+                                        <table class="table table-sm o_main_table">
+                                    		<t>
+                                        	<tbody class="invoice_tbody">
+                                             <tr>
+                                             <td style="text-align:right">
+                                                    <font size="5"><strong> <span>المنطقة </span></strong></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.location" /></font>
+                                                </td>
+                                                 <td style="text-align:right">
+                                                    <font size="5"><strong> <span>المركبة </span></strong></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.new_vehicle" /></font>
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                             	<td style="text-align:right">
+                                                    <font size="5"><strong> <span>نوع الترحيل </span></strong></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.trip_type" /></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="5"><strong> <span>رسوم الترحيل </span></strong></font>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.trans_cost" /></font>
+                                                </td>
+                                            </tr>
+                                        
+                                            
+                                          </tbody>
+                                    </t>
+                                </table>
+                                 	<div >
+                                         <h2 style="text-align:right" >البيانات المالية</h2>
+                                      </div>
+                                <table class="table table-sm o_main_table">
+                                    	<t>
+                                        <tbody class="invoice_tbody">
+                                         <tr>
+                                                <th  style="text-align:right">
+                                                    <font size="5"><strong> <span> مجموع الرسوم الدراسية</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.total_fees" /></font>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align:right">
+                                                    <font size="5"><strong> <span> المبلغ المدفوع</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.paid_fees" /></font>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align:right">
+                                                    <font size="5"><strong> <span> المبلغ المستحق</span></strong></font>
+                                                </th>
+                                                <td style="text-align:right">
+                                                    <font size="4">  <span t-field="o.due_fees" /></font>
+                                                </td>
+                                            </tr>
+ 
+                                        </tbody>
+                                    </t>
+                                </table>
+                            </myRTLpara>                         
+                    </div>
+                   </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

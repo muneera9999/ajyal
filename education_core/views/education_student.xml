@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_education_student_kanban">
+        <field name="name">education.student.kanban</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <kanban class="education_student_kanban">
+                <field name="ad_no"/>
+                <field name="name"/>
+                <field name="parent_ids"/>
+                <field name="class_id"/>
+                <field name="city"/>
+                <field name="mobile"/>
+                <field name="state"/>
+                <field name="image_1920"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+                            <div class="o_kanban_image">
+                                <t t-if="record.image_1920.raw_value">
+                                    <img t-att-src="kanban_image('education.student', 'image_1920', record.id.raw_value)"/>
+                                </t>
+                                <t t-if="!record.image_1920.raw_value">
+                                    <img t-att-src='_s + "/base/static/img/avatar_grey.png"'/>
+                                        
+                                </t>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title oe_partner_heading"><field name="ad_no"/></strong>
+                                <strong class="o_kanban_record_title oe_partner_heading"><field name="name"/></strong>
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <ul>
+                                    <li t-if="record.class_id.raw_value">
+                                         <field name="class_id"/>
+                                    </li>
+                                    <li t-if="record.parent_ids.raw_value">
+                                        Parent : <field name="parent_ids"/>
+                                    </li>
+                                    <li t-if="record.mobile.raw_value">
+                                        <i class="fa fa-phone"/>
+                                        <field name="mobile"/>
+                                    </li>
+                                    <li t-if="record.email.raw_value">
+                                        <i class="fa fa-envelope"/>
+                                        <a t-attf-href="mailto:#{record.email.value}">
+                                            <field name="email"/>
+                                        </a>
+                                    </li>
+                                     <li t-if="record.state.raw_value">
+                                        status : <field name="state"/>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_education_student_tree" model="ir.ui.view">
+        <field name="name">education.student.tree</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <!-- colors="red:state=='not_registered';green:state=='registered';yellow:state=='pendent';grey:state=='alumni';purple:state=='transfer';" -->
+                <field name="ad_no"/>
+                <field name="name"/>
+               <!-- <field name="gender"/> -->
+                <field name="admission_class"/>
+                <field name="class_id"/>
+                <field name="email" invisible="1"/>
+                <field name="mobile"/>
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_student_form" model="ir.ui.view">
+        <field name="name">education.student.form</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                 <header>
+                        <button name="action_rigster" string="Rigster" groups="education_core.group_education_hod" invisible="state not in ('not_registered', 'pendent', 'leave', 'alumni')" type="object" class="oe_highlight" />
+                                <!--  <button name="action_rigster" string="Rigster" groups="education_core.group_education_hod" states="not_registered,pendent,leave,alumni" type="object"
+                                class="oe_highlight" /> -->
+
+                        <button name="action_alumni" string="Alumni" groups="education_core.group_education_hod" invisible="state != 'registered'" type="object" 
+                                class="oe_highlight" />
+                                <!-- <button name="action_alumni" string="Alumni" groups="education_core.group_education_hod" states="registered" type="object" 
+                                class="oe_highlight" /> -->
+                        <button name="action_pendent" string="Pendent" groups="education_core.group_education_hod" invisible="state not in ('registered', 'not_registered')" type="object" 
+                                class="oe_highlight" />
+                                <!--  <button name="action_pendent" string="Pendent" groups="education_core.group_education_hod" states="registered,not_registered" type="object" 
+                                class="oe_highlight" /> -->
+                        <button name="%(action_student_transfer)d" groups="education_core.group_education_hod" string="Transfer" invisible= "state not in ('registered', 'not_registered', 'transfered', 'pendent')" type="action" 
+                                class="oe_highlight" />
+                                <!-- <button name="%(action_student_transfer)d" groups="education_core.group_education_hod" string="Transfer" states="registered,not_registered,transfered,pendent" type="action" 
+                                class="oe_highlight" /> -->
+                        <button name="action_leave" string="Leave" groups="education_core.group_education_hod" invisible="state not in ('registered', 'not_registered', 'pendent', 'alumni')"  type="object" 
+                                class="oe_highlight" />
+                                <!--   <button name="action_leave" string="Leave" groups="education_core.group_education_hod" states="registered,not_registered,pendent,alumni"  type="object" 
+                                class="oe_highlight" /> -->
+
+                                 <button name="action_is_student" string="is" type="object" 
+                                class="oe_highlight" invisible="1"/>
+
+
+                        <field name="state" widget="statusbar" statusbar_visible="not_registered,registered,pendent,leave,alumni"/>
+                        <!-- <button name="Update_student" string="update"  type="object" 
+                                class="oe_highlight" /> -->
+                    </header>
+                <sheet>
+                    
+                    <div class="oe_button_box" name="button_box">
+                        <button name="student_documents" type="object" widget="statinfo"
+                                class="oe_stat_button" icon="fa-shoping-car" string="Documents">
+                        </button>
+
+                       <!--   <button name="stock_deivery_order" type="object" widget="statinfo"
+                                class="oe_stat_button" icon="fa-shoping-card">
+                            <field string="accessories" name="accessories_count" widget="statinfo"/> -->
+
+                        <!-- </button> -->
+                    </div>
+                    <field name="image_1920" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
+                    
+                    <div class="oe_title">
+                        <h3>
+                            <field name="ad_no" invisible=" ad_no == False"/>
+                        </h3>
+
+                        <h1>
+                            <field name="name" placeholder="Student's Name" required="1"/>
+                        </h1>
+                        <field name="student_notes"/>
+                    </div>
+                 
+                    <notebook>
+                        <page string="Student Details">
+                            <separator string="Basic Details"/>
+                             <group>
+                                <group>
+                                    <field name="admission_class" options="{'no_create':1,'no_open': True}"/>
+                                    <field name="class_id" options="{'no_create':1,'no_open': True}"   domain="[('class_id', '=', admission_class)]"/>
+                                </group>
+                                <group>
+                                    <field name="school_id" options="{'no_create': True}"/>
+                                  <!-- <field name="partner_credit" string="due Amount"/> -->
+                                </group>
+                            </group>
+                            <separator string="Student Info"/>
+                            <group>
+                                <group>
+                               <field name="mother_name"/>
+                                    <field name="parent_ids"/>
+                                    <field name="parent_id" invisible="1"/>
+
+                                    <field name="guardian_relationship"/>
+                                    <field name="nationality" invisible="1"/>
+                                     <field name="have_sibling" invisible="1"/>
+                                     <!-- <field name="percentage" /> -->
+                                     <field name="sib_percentage" invisible= "student_sibling_ids == []" />
+                                </group>
+                                <group>
+                                    <field name="gender" widget="radio" options="{'horizontal': true}"/>
+                                     <field name="phone"/>
+                                    <field name="mobile" required="0"/>
+                                    <field name="date_of_birth" />
+                                    <field name="previous_mark"/>
+                                    <field name="religion_id" invisible="1"/>
+                                    <field name="mother_tongue" invisible="1"/>
+                                    <!-- <field name="student_sibling_ids" widget="one2many" attrs="{'invisible': [('have_sibling', '=', False)]}" /> -->
+                                </group>
+                            </group>
+                    <separator string="Address"/>
+                                
+                        <group>
+                            <div class="o_address_format">
+                            
+                                <field name="zone_id" placeholder="Area" class="o_address_city" readonly= "state == 'done'"/>
+                      
+                            </div>
+                        </group>
+                             <group name="amenity_info">
+                             </group>
+                        </page>
+                        <page string="Contact Details" invisible="1">
+                            <group>
+                                <group>
+                                    <field name="email" invisible="1"/>
+                                </group>
+                             <!--    <group>
+                                    <field name="phone"/>
+                                    <field name="mobile" required="0"/>
+                                </group> -->
+                            </group>
+                            <group>
+                                <separator string="Address"/>
+                                <div name="temp_address">
+                        <group>
+                            <div class="o_address_format">
+                               
+                                <field name="zone_id" placeholder="Area" class="o_address_city" readonly= "state == 'done'"/>
+                      
+                            </div>
+                        </group>
+                                </div>
+                                <field name="is_same_address" invisible="1"/>
+                                <div name="permanent_address" invisible="is_same_address == True">
+                                    <separator string="Permanent Address"/>
+                                    <group>
+                                        <div class="o_address_format">
+                                            <field name="per_street" placeholder="Street..." class="o_address_street"/>
+                                            <field name="per_street2" placeholder="Street 2..." class="o_address_street"/>
+                                            <field name="per_city" placeholder="City" class="o_address_city"/>
+                                            <field name="per_state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                            <field name="per_zip" placeholder="ZIP" class="o_address_zip"/>
+                                            <field name="per_country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                        </div>
+                                    </group>
+                                </div>
+                            </group>
+                        </page>
+                <!--          <page string="Emergency Calls">
+                            
+                            <field name="emergency_calls">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="relationship"/>
+                        </tree>
+                        </field>
+                       </page>
+ -->
+
+
+                     <page string="siblings" invisible= "student_sibling_ids == []">
+                            
+                            <field name="student_sibling_ids" >
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="gender"/>
+                           <field name="admission_class"/>
+                         <field name="class_id"/>
+
+                        </tree>
+                        </field>
+                       </page>
+
+
+                        <page string="Class History">
+                            <field name="class_history_ids">
+                                <tree editable="bottom">
+                                    <field name="academic_year_id" required="1"/>
+                                    <field name="class_id" required="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                             <page string="Medical">
+                                <group>
+                                    <group string="Doctor Information">
+                                        <field name="designation" placeholder="Doctor Designation" />
+                                        <field name="doctor_phone" placeholder="Doctor's Contact No" />
+                                    </group>
+                                    <group string="Physical Information">
+                                        <field name="blood_group" placeholder="e.g.B+,Ab+" />
+                                        <field name="height" placeholder="Height"/>
+                                        <field name="weight"  placeholder="Weight"/>
+                                    </group>
+                                </group>
+                                <separator string="Does the applicant have any Disabilities?" colspan="4" />
+                                <group col="6" colspan="4">
+                                    <field name="eye" />
+                                    <field name="ear" />
+                                    <field name="nose_throat" />
+                                    <!-- <field name="respiratory" /> -->
+                                    <field name="cardiovascular" />
+                                    <!-- <field name="neurological" /> -->
+                                    <!-- <field name="muskoskeletal" /> -->
+                                    <field name="dermatological" />
+                                    <field name="blood_pressure" />
+                                </group>
+                                <separator string="Notes" colspan="4" />
+                                <group col="6" colspan="4">
+                                    <field name="comment" placeholder="Notes About Medical.." nolabel="1" />
+                                </group>
+                            </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                 </div>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="student_search" model="ir.ui.view">
+        <field name="name">Students</field>
+        <field name="model">education.student</field>
+        <field name="arch" type="xml">
+            <search string="Search Students">
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="admission_class"/>
+                <field name="gender"/>
+              
+                <field name="mother_name"/>
+                <field name="parent_ids"/>
+                <field name="state"/>
+                  <field name="previous_mark"/>
+                <field name="ad_no"/>
+                <filter string="Registered" name="registered_students" domain="[('state','=','registered')]"/>
+                <filter string="Alumnies" name="alumni_students" domain="[('state','=','alumni')]"/>
+                <filter string="Transfered" name="transfered_students" domain="[('state','=','transfer')]"/>
+
+
+
+                <filter string="Leave" name="leave_students" domain="[('state','=','leave')]"/>
+                <filter string="Pendent" name="pendent_students" domain="[('state','=','pendent')]"/>
+
+                <group expand='0' string='Group by...'>
+                    <filter string='Class' name="admission_class" domain="[]" context="{'group_by' : 'admission_class'}"/>
+                    <filter string='Class Room' name="class_id" domain="[]" context="{'group_by' : 'class_id'}"/>
+                    <filter string='Gender' name="gender" domain="[]" context="{'group_by' : 'gender'}"/>
+                     <filter string='درجة النجاح السابقه' name="previous_mark" domain="[]" context="{'group_by' : 'previous_mark'}"/>
+
+                 
+              <filter string='Guardian' name ="parent_ids" icon="fa-user" domain="[]" context="{'group_by' : 'parent_ids'}"/>
+                    <filter string='status' name="state" domain="[]" context="{'group_by' : 'state'}"/>
+
+               </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">education.student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="student_search"/>
+
+        <field name="context">{'create': False, 'search_default_registered_students': 1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first student here.
+            </p>
+        </field>
+    </record>
+
+    <!-- alumnies action -->
+
+    <!-- <record id="action_alumni_student" model="ir.actions.act_window">
+        <field name="name">Alumni Students</field>
+        <field name="res_model">education.student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="student_search"/>
+        <field name="domain">[('state', '=', 'alumni')]</field>
+
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first student here.
+            </p>
+        </field>
+    </record> -->
+
+    <!-- students menue -->
+
+    <menuitem id="menu_education_student" name="Students" sequence="1"
+              parent="menu_education_admission" action="action_student"/>
+              <!-- alumnies menue -->
+              <!-- <menuitem id="menu_alumni_education_student" name="Alumni Students" 
+              parent="menu_education_admission" action="action_alumni_student"/> -->
+</odoo>
+
+
+
+

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="division_students_report">
+     <t t-call="web.html_container">
+       
+            
+            <div class="page" t-foreach="docs" t-as="o" >
+                   <style >
+                        myRTLpara{
+                          direction:rtl;
+                          font: adobe arabic;
+                         
+                         }
+                          .container{
+                           text-align: center;
+                          }
+                         .block{
+                           display:inline-block;
+                         }
+                        table {
+                              border-collapse: collapse;
+                              width: 100%;
+                          }
+                          td, th { 
+                             text-align: center; 
+                             border: 1px solid #adafa2; 
+                             padding:2px 5px;
+                             white-space: nowrap;
+                          }
+                          td{
+                            font: adobe arabic  16px/20px Georgia, sans-serif;
+                          }
+                            th { 
+                              background-color:#adafa2;
+                              font: adobe arabic bold 16px/20px Georgia, sans-serif;
+                            }
+                          .stud_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              
+                          } 
+                          .division_table{
+                              border-spacing: 1px;
+                              border-collapse:separate;
+                              padding: 10px;
+                              
+                          } 
+                          .caption {
+                              margin: 0; 
+                              background: #302f33;
+                              border: 1px solid #302f33;
+                              color: white;
+                              border-top-left-radius:30px !important;
+                              border-top-right-radius:30px !important;
+                              width: 400px;
+                              height: 30px;
+                              font: adobe arabic bold 16px/20px Georgia, sans-serif;;
+                              margin: 0 auto;
+                              border-bottom: 5px solid #302f33;
+                              padding-top: 5px;
+                            
+                             
+                           }
+                          
+                          thead tr:first-child th:first-child{
+                              border: 1px solid #adafa2;
+                              border-top-right-radius:6px !important;
+                          }
+                          thead tr:first-child th:last-child{
+                              border: 1px solid #adafa2;
+                              border-top-left-radius:6px !important;
+                          }
+                          tbody tr:last-child td:first-child{
+                              border: 2px solid #adafa2; 
+                              border-bottom-right-radius:6px !important;
+                              border-bottom-left-radius:6px !important;
+                          }
+                          #institute{
+                            background: #302f33;
+                            border-radius:20px !important;
+                            color: white;
+                            width: 400px;
+                            height: 40px;
+                          }
+                          #school{
+                           background: #adafa2;
+                           border-radius:20px !important;
+                           margin-top:0px;
+                          }
+                          .result{
+                            border: 3px solid #302f33;
+                            border-top-left-radius:6px !important;
+                            border-top-right-radius:6px !important;
+                            margin: 0 auto;
+                            border-bottom-width: 12px;
+                            border-left-width: thick;
+                            border-right-width: thick;
+                            width: 80%;
+                          }
+                          .details{
+                            background: #302f33;
+                            margin-top: 0px;
+                            padding-bottom:3px;
+
+                            
+                          }
+                          .details div{
+                            background: white;
+                            display:inline-block;
+                            border-radius:8px !important;
+                          }
+                          .details div{
+                           font: adobe arabic bold 16px/20px Georgia, sans-serif;
+                          }
+                          .details.content { 
+                              white-space: nowrap;
+                           }
+                           .about{
+                              margin: 10px;
+                              padding: 5px;
+                              height: 140px;
+                              border: 1px dashed black;
+                              border-radius:6px;
+                              font: adobe arabic bold 16px/20px Georgia, sans-serif;
+                           }
+                             .nots{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             height: 25px;
+                             text-align: right;
+                             padding-right: 10px;
+                             padding-top: 2px;
+                           }
+                           .div22{
+                             text-align: center;
+                             display:inline-block;
+                             width: 220px;
+                             height: 65px;
+                             padding-top: 40px;
+                             float: left;
+                             margin-top: 4px;
+                             border: 1px dashed black;
+                             border-radius:70px;
+                           }
+                           .div21{
+                              display:inline-block;
+                              width:405px;
+                              text-align: right;
+                              padding-top: 5px;
+                              dirction: rtl;
+                              float: right;
+
+                           }
+                           .div212{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             height: 26px;
+                             width: 98%;
+                             margin-top: 4px;
+                             dirction: rtl;
+                             font-size: 14px;
+                             padding: 0.5px;
+                             text-align: center;
+                             padding-top: 4px;
+
+                           }
+                           
+                          
+                           .div21111{
+                             <!-- border: 1px solid black;
+                             border-radius:8px !important; -->
+                             display:inline-block;
+                             height: 26px;
+                             <!-- width:250px; -->
+                             width:350px;
+                             padding-right: 4px;
+                             dirction: rtl;
+                             text-align: right;
+                             padding-top: 4px;
+                           }
+                           .div21112{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             display:inline-block;
+                             height: 26px;
+                             width:250px;
+                             padding-right: 3px;
+                             margin-top: 2px;
+                             dirction: rtl;
+                             text-align: right;
+                             padding-top: 4px;
+                             
+                           }
+                           .div2112{
+                            padding-top: 2px;
+                           }
+                           .div21121{
+                            <!--  border: 1px solid black;
+                             border-radius:8px !important; -->
+                             display:inline-block;
+                             height: 26px;
+                             width:140px;
+                             padding-top: 4px;
+                           }
+
+
+                            .divnumber{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             display:inline-block;
+                             height: 26px;
+                             width:140px;
+                             padding-top: 4px;
+                           }
+
+
+
+
+                           .div21122{
+                             border: 1px solid black;
+                             border-radius:8px !important;
+                             height: 26px;
+                             width:140px;
+                             display:inline-block;
+                             margin-top: 2px;
+                             padding-top: 4px;
+                           }
+                           .all{
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                           }
+                           .all span{
+                             border: 5px solid #302f33;background:#302f33;color: white;border-radius:15px !important;
+                              min-width: 20em;
+                           }
+                           .row{
+                              width: 80%;
+                              margin: 0 auto;
+                           }
+                     
+                            .subject{
+                               width:100%;
+                               heihgt:100px;
+                            }
+                            .subject span{
+                            margin-right: 15px;
+                            }
+                      </style>
+
+                      <div class="oe_structure" style="width: 21cm;"/>
+                           <div class="container">
+
+                        <div class="row" style="width:100%;">
+                            <div  class="block" style="float: right;">
+                               <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                           </div>
+
+
+                             <div class="block">
+                                  <!-- <span>بسم اللَه الرحمن الرحيم</span><br/> -->
+
+                                  <span style="font-size: 18px;">وزارة التربية و التعليم - إدارة التعليم الخاص</span>
+                                  <br/>
+                                  <div>
+                                    <h1 style="font-family:Calibri !important;">مؤسسة مكه التعليميه</h1>
+                                  </div>
+                                  
+
+                                  <!-- <div id="school" style="font:bold ">نتيجة  <span t-esc="o.exam_id.name.split('-')[0]"/>(<span t-esc="o.academic_year.name"/>)&#160;م</div> -->
+                                    <div >
+                                     <h2 >بيانات الطلاب</h2>
+                                 </div>
+                                  <div >
+                                     <h2 ><t t-esc="o.name"/></h2>
+                                 </div>
+                            </div>
+
+
+                             <div class="block" style="float:left;">
+                                 <img width="80px;" height="80px;" t-if="res_company.logo" t-attf-src="data:image/png;base64,#{res_company.logo}" />
+                          </div>
+                          
+                      </div>
+                  </div>
+
+                  <myRTLpara>
+                    <t t-set="seq" t-value="0"/>
+
+             
+                 <table class="table table-sm o_main_table" name="num_table">
+                  <t >
+
+                    <thead >
+                      <tr>
+                     <!--    <t t-set="colspan" t-value="12"/> -->
+                          <th name="tot_ount" class="text-right">
+                           <font size="5"><strong> <span>الرقم</span></strong></font>
+                          </th>
+                          <th name="tot_ount" class="text-right">
+                           <font size="5"><strong> <span>إسم الطالب </span></strong></font>
+                          </th>
+                          <th name="Parent_name" class="text-right">
+                           <font size="5"><strong> <span >ولي الأمر</span></strong></font>
+                          </th>
+                          <th name="Parent_name" class="text-right">
+                           <font size="5"><strong> <span >رقم الهاتف</span></strong></font>
+                          </th>
+                           <th name="Parent_name" class="text-right">
+                           <font size="5"><strong> <span >المحمول</span></strong></font>
+                          </th>
+
+
+                      </tr>
+                    </thead>
+
+                    <tbody class="invoice_tbody">
+
+                      <tr t-foreach="o.student_ids" t-as="child">
+                        <!-- <t name="stu_ad_no"   > -->
+                         <!--  <td>
+                            <font size="4">  <span t-field="child.ad_no" /></font>
+                          </td> -->
+                            <span t-set="seq" t-value="seq+1"/>
+                                  <td class="text-center">
+                                      <span t-esc="seq"/>
+                                  </td>
+                          <td>
+                            <font size="4">  <span t-field="child.name" /></font>
+                          </td>
+                            <td>
+                            <font size="4">  <span t-field="child.parent_ids" /></font>
+                          </td>
+                            <td>
+                            <font size="4">  <span t-field="child.mobile" /></font>
+                          </td>
+                            <td>
+                            <font size="4">  <span t-field="child.doctor_phone" /></font>
+                          </td>
+                       
+                       
+                        <!-- </t> -->
+                      </tr>
+                    
+                    </tbody>
+                   </t> 
+                  </table>
+                      <p style="page-break-before:always;" ></p>
+            </myRTLpara>
+        </div>
+      </t>
+    
+  </template>
+
+ <!--       <report
+          id="action_division_students_report"
+          model="education.class.division"
+          string="Division Studens report"
+          report_type="qweb-html"
+          name="education_core.division_students_report"
+          file="education_core.division_students_report"
+      /> -->
+</odoo>

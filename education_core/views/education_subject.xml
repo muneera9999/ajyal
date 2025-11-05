@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_education_subject_tree" model="ir.ui.view">
+        <field name="name">education.subject.tree</field>
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <tree string="Syllabus Subject">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+                <field name="weightage" invisible="1"/>
+                <field name="class_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_subject_form" model="ir.ui.view">
+        <field name="name">education.subject.form</field>
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <form string="Syllabus Subject">
+                <sheet>
+                    <group string="Subject">
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="is_language" invisible="1"/>
+                            <field name="class_id" widget="many2many_tags"  options="{'no_create':1,'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="weightage" />
+                            <field name="is_lab" invisible="1"/>
+
+                        </group>
+                        <field name="description" placeholder="Enter description here"/>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="subject_search" model="ir.ui.view">
+        <field name="name">Subjects</field>
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <search string="Search Subjects">
+                <field name="is_language"/>
+                <field name="is_lab"/>
+                <field name="type"/>
+                <field name="weightage" invisible="1"/>
+                <filter string="Is Language" name="is_language" domain="[('is_language','=', True)]"/>
+                <filter string="Is Lab" name="is_lab" domain="[('is_lab','=', True)]"/>
+                <group expand='0' string='Group by...'>
+                    <filter string='Weightage' name="weightage" domain="[]" context="{'group_by' : 'weightage'}"/>
+                    <filter string='Type' name="type" domain="[]" context="{'group_by' : 'type'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_education_subject_tree" model="ir.actions.act_window">
+        <field name="name">Subject</field>
+        <field name="res_model">education.subject</field>
+        <field name="type">ir.actions.act_window</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="subject_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first subject here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem action="action_education_subject_tree" parent="menu_education_class_conf"
+              id="menu_action_education_subject" name="subjects" sequence="4"/>
+</odoo>

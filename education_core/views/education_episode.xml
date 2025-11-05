@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="episode_form_view" model="ir.ui.view">
+		<field name="name">education.episode.form</field>
+        <field name="model">education.episode</field>
+        <field name="arch" type="xml">
+		<form string="Episodes">
+			<sheet>
+
+                            <group>
+                            	<group><field name="name" placeholder="Episode Name"/></group>
+                                <group><field name="code"/></group>
+                            </group>
+
+                            <newline />
+                            <group><field name="class_ids" widget="many2many_tags"/></group>
+
+			</sheet>
+		</form>
+	</field>
+	</record>
+	<record id="episode_tree_view" model="ir.ui.view">
+		<field name="name">education.episode.tree</field>
+        <field name="model">education.episode</field>
+        <field name="arch" type="xml">
+		<tree string="Episodes">
+			<field name="code"/>
+			<field name="name"/>
+		</tree>
+	</field>
+	</record>
+	<record id="action_episode" model="ir.actions.act_window">
+		  <field name="name">Episode</field>
+            <field name="res_model">education.episode</field>
+            <field name="view_mode">tree,form</field>
+	</record>
+	<menuitem id="episode_main_menu" name="Episodes"
+		     parent="education_core.menu_education_main_menu"/>
+    	<menuitem id="episode_menu" name="Episodes"
+     parent="episode_main_menu" action="action_episode"/>
+
+</odoo>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="action_student_id_card"
+            model="education.student"
+            string="Student ID Card"
+            report_type="qweb-pdf"
+            name="education_core.report_student_id_card"
+            file="education_core.report_student_id_card"
+        />
+         <report
+		    id="action_student_data_report"
+		    model="education.student"
+		    string="Student Data"
+		    report_type="qweb-pdf"
+		    name="education_core.report_student_data_data"
+		    file="education_core.report_student_data_data"
+		/>
+
+     <!--    <report
+            id="action_faculty_id_card"
+            model="education.faculty"
+            string="Faculty ID Card"
+            report_type="qweb-pdf"
+            name="education_core.report_faculty_id_card"
+            file="education_core.report_faculty_id_card"
+        />
+ -->
+        <record id="paperformat_student_application" model="report.paperformat">
+            <field name="name">Student Application A4</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">5</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+            id="action_student_application_report"
+            model="education.application"
+            string="Student Application"
+            report_type="qweb-pdf"
+            paperformat="education_core.paperformat_student_application"
+            name="education_core.report_student_application"
+            file="education_core.report_student_application"
+        />
+
+         <report
+            id="action_student_list_report"
+            model="education.class.division"
+            string="Students List"
+            report_type="qweb-html"
+            name="education_core.report_student_list"
+            file="education_core.report_student_list"
+             menu="True"
+        />
+        <record id="action_student_list_report" model="ir.actions.report">
+<field name="name">Report Student List</field>
+<field name="model">education.class.division</field>
+<field name="report_name">education_core.report_student_list</field>
+<field name="paperformat_id" ref="education_core.paperformat_student_application"/> <!-- Put Your Custom PaperFormat Id -->
+
+</record>
+ <report
+            id="action_report_student_list_with_phone"
+            model="education.class.division"
+            string="Students List With Phone"
+            report_type="qweb-html"
+            name="education_core.report_student_list_with_phone"
+            file="education_core.report_student_list_with_phone"
+             menu="True"
+        />
+        <record id="action_report_student_list_with_phone" model="ir.actions.report">
+<field name="name">Report Student</field>
+<field name="model">education.class.division</field>
+<field name="report_name">education_core.report_student_list_with_phone</field>
+<field name="paperformat_id" ref="education_core.paperformat_student_application"/>
+
+</record>
+
+
+    </data>
+</odoo>

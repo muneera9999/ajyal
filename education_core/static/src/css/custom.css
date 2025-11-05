@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'Motken';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/education_core/static/src/fonts/Motken Unicode Claseec.ttf) format('truetype');
+}
+/* 
+ * Amiri (Arabic) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Amiri';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/web_rtl/static/src/fonts/Amiri-Slanted.eot);
+  src: url(/web_rtl/static/src/fonts/Amiri-Slanted.woff2) format('woff2'),
+       url(/web_rtl/static/src/fonts/Amiri-Slanted.woff) format('woff'),
+       url(/web_rtl/static/src/fonts/Amiri-Slanted.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Amiri';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/web_rtl/static/src/fonts/Amiri-Regular.eot);
+  src: url(/web_rtl/static/src/fonts/Amiri-Regular.woff2) format('woff2'),
+       url(/web_rtl/static/src/fonts/Amiri-Regular.woff) format('woff'),
+       url(/web_rtl/static/src/fonts/Amiri-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Amiri';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/web_rtl/static/src/fonts/Amiri-BoldSlanted.eot);
+  src: url(/web_rtl/static/src/fonts/Amiri-BoldSlanted.woff2) format('woff2'),
+       url(/web_rtl/static/src/fonts/Amiri-BoldSlanted.woff) format('woff'),
+       url(/web_rtl/static/src/fonts/Amiri-BoldSlanted.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Amiri';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/web_rtl/static/src/fonts/Amiri-Bold.eot);
+  src: url(/web_rtl/static/src/fonts/Amiri-Bold.woff2) format('woff2'),
+       url(/web_rtl/static/src/fonts/Amiri-Bold.woff) format('woff'),
+       url(/web_rtl/static/src/fonts/Amiri-Bold.ttf) format('truetype');
+}
+*{
+	font-family: 'Amiri';
+}
+.o_main_content{
+	font-family: 'Amiri';
+}
